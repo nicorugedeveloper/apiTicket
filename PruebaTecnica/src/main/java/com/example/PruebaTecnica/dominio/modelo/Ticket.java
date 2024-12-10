@@ -1,35 +1,21 @@
 package com.example.PruebaTecnica.dominio.modelo;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class Ticket {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTicket;
-
-    @Column(nullable = false, length = 100)
+    private Long id;
     private String usuario;
-
     private LocalDateTime fechaCreacion;
-
     private LocalDateTime fechaActualizacion;
+    private Status estatus;
 
-    @Enumerated(EnumType.STRING)
-    private Estatus estatus;
-
-    public enum Estatus {
+    public enum Status {
         ABIERTO,
         CERRADO
     }
