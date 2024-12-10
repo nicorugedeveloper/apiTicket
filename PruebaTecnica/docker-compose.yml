@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/tickets_db
+      SPRING_DATASOURCE_USERNAME: usuario
+      SPRING_DATASOURCE_PASSWORD: Prueba
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: usuario
+      MYSQL_PASSWORD: Prueba
+      MYSQL_DATABASE: tickets_db
+    ports:
+      - "3306:3306"
