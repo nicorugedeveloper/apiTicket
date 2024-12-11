@@ -64,7 +64,4 @@ public class GithubAdapter {
             return new GitHubDTO(0, false, Collections.emptyList());
         }
     }
-
-
-
 }

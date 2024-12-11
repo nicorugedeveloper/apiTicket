@@ -1,6 +1,7 @@
 package com.example.PruebaTecnica.application.ports.inbound;
 
 import com.example.PruebaTecnica.application.servicio.UpdateTicketService;
+import com.example.PruebaTecnica.domain.dto.CreateTicketRequest;
 import com.example.PruebaTecnica.domain.modelo.Ticket;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,10 +17,9 @@ public class UpdateTicket {
 
     @PutMapping("/{id}")
     public ResponseEntity<Ticket> updateTicket(@PathVariable Long id,
-                                               @RequestParam String usuario,
-                                               @RequestParam Ticket.Status status) {
+                                               @RequestBody CreateTicketRequest request) {
         try {
-            Ticket updatedTicket = updateTicketService.updateTicket(id, usuario, status);
+            Ticket updatedTicket = updateTicketService.updateTicket(id, request);
             return ResponseEntity.ok(updatedTicket);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
